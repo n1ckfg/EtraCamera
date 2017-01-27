@@ -15,7 +15,9 @@ float avgBright = 0;
 float pAvgBright = 0;
 
 void setup(){
-  size(sW,sH);
+  Settings settings = new Settings("settings.txt");
+  size(50, 50);
+  surface.setSize(sW,sH);
   frameRate(fps);
   // The name of the capture device is dependent on
   // the cameras that are currently attached to your 

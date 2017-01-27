@@ -1,0 +1,4 @@
+/[Dd]ata/
+/[Bb]uild/
+
+.DS_Store
