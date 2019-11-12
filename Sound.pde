@@ -7,7 +7,7 @@
 
 import processing.sound.*;
 
-int numSines = 10;
+int numSines = 3;
 SinOsc[] sines = new SinOsc[numSines];
 
 float freq = 600;
