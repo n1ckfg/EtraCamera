@@ -17,17 +17,17 @@ void setupSound() {
   for (int i=0; i<sines.length; i++) {
     sines[i] = new SinOsc(this);
     sines[i].play();
-    sines[i].freq(freq+i);
+    sines[i].freq(freq+(i*2));
   }
 }
 
 
 
 void updateSound() {
-  float time = sin(millis()/1000.0);
-  time = map(time, -1.0, 1.0, 0.45, 0.51);
-  //println(time);
+  float time = sin((float)millis() / 100.0);
+  time = map(time, -1.0, 1.0, 0.6, 0.8);
+  println(time);
   for (int i=0; i<sines.length; i++) {
-    sines[i].amp(sin(time));
+    sines[i].amp(time);
   }
 }

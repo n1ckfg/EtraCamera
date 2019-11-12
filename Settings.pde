@@ -5,10 +5,10 @@ class Settings {
   Settings(String _s) {
     try {
       data = loadStrings(_s);
-      for (int i=0;i<data.length;i++) {
-        if (settings.data[i].equals("Width")) sW = setInt(settings.data[i+1]);
-        if (settings.data[i].equals("Height")) sH = setInt(settings.data[i+1]);
-        if (settings.data[i].equals("Framerate")) fps = setInt(settings.data[i+1]);
+      for (int i=0; i<data.length; i++) {
+        if (data[i].equals("Width")) sW = setInt(data[i+1]);
+        if (data[i].equals("Height")) sH = setInt(data[i+1]);
+        if (data[i].equals("Framerate")) fps = setInt(data[i+1]);
       }
     } catch(Exception e) {
       println("Couldn't load settings file. Using defaults.");
