@@ -1,18 +1,16 @@
 class Settings {
-
-  Data settings;
-
+  
+  String[] data;
+  
   Settings(String _s) {
     try {
-      settings = new Data();
-      settings.load(_s);
-      for (int i=0;i<settings.data.length;i++) {
+      data = loadStrings(_s);
+      for (int i=0;i<data.length;i++) {
         if (settings.data[i].equals("Width")) sW = setInt(settings.data[i+1]);
         if (settings.data[i].equals("Height")) sH = setInt(settings.data[i+1]);
         if (settings.data[i].equals("Framerate")) fps = setInt(settings.data[i+1]);
       }
-    } 
-    catch(Exception e) {
+    } catch(Exception e) {
       println("Couldn't load settings file. Using defaults.");
     }
   }
