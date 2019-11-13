@@ -1,12 +1,21 @@
 void keyPressed() {
   if(keyCode==33 || key==' ') {
+    for (int i=0; i<sines.length; i++) {
+      sines[i].play();
+    }
+    doCapture = true;
+  }
+  
+  if(keyCode==34 || key=='s' || key=='S') {
     saveFrame("data/shot1_frame"+counter+".tga");
     counter++;
     img = createImage(sW, sH, RGB);
   }
-  if(keyCode==34 || key=='c'||key=='C') {
+  
+  if (keyCode==TAB) {
     showImg = !showImg; 
   }
+  
   if (keyCode==UP || keyCode==DOWN) {
     if (keyCode==UP) rThreshold++;
     if (rThreshold > 255) rThreshold = 255;
@@ -14,4 +23,30 @@ void keyPressed() {
     if (rThreshold < 0) rThreshold = 0;
     println(rThreshold);
    }
+}
+
+void keyReleased() {
+    if(keyCode==33 || key==' ') {
+      for (int i=0; i<sines.length; i++) {
+        sines[i].stop();
+      }
+      
+      doCapture = false;
+    }
+}
+
+void mousePressed() {
+  for (int i=0; i<sines.length; i++) {
+    sines[i].play();
+  }
+  
+  doCapture = true;
+}
+
+void mouseReleased() {
+  for (int i=0; i<sines.length; i++) {
+    sines[i].stop();
+  }
+  
+  doCapture = false;
 }

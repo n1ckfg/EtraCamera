@@ -16,7 +16,6 @@ void setupSound() {
   // create and start the sine oscillator.
   for (int i=0; i<sines.length; i++) {
     sines[i] = new SinOsc(this);
-    sines[i].play();
     sines[i].freq(freq+(i*2));
   }
 }

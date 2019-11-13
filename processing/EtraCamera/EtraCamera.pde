@@ -15,6 +15,8 @@ int counter=1;
 float avgBright = 0;
 float pAvgBright = 0;
 
+boolean doCapture = false;
+
 Settings settings;
 
 void setup() {
@@ -26,6 +28,8 @@ void setup() {
   setupCap(sW, sH);
  
   img = createImage(sW,sH,RGB);
+  img.loadPixels();
+
   if (useSound) setupSound();
 }
 
@@ -33,8 +37,8 @@ void draw() {
   if (useSound) updateSound();
   
   if(cap.available()) cap.read();
-  if(showImg) {
-  img.loadPixels();
+  
+  if(doCapture && showImg) {
   pAvgBright=avgBright;
   avgBright=0;
   for (int i=0; i<img.width * img.height;i++) {
