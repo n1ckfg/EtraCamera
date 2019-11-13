@@ -8,7 +8,10 @@ void keyPressed() {
   }
   
   if(keyCode==34 || key=='s' || key=='S') {
-    saveFrame("data/shot1_frame"+counter+".tga");
+    String url = "data/frame"+counter;
+    saveFrame(url + ".tga");
+    saveStrings(url + ".txt", strings);
+    
     counter++;
     img = createImage(sW, sH, RGB);
     showCam = true;

@@ -15,7 +15,10 @@ int fps = 30;
 
 PImage img;
 PShape shp;
-int scanInterval = 5;
+PVector[] pts;
+String[] strings;
+
+int scanInterval = 2;
 int counter=1;
 float avgBright = 0;
 float pAvgBright = 0;
@@ -27,18 +30,23 @@ Settings settings;
 
 void setup() {
   size(1280, 720, P3D);
+
   cam = new PeasyCam(this, width/2, height/2, 400, 50);
 
   settings = new Settings("settings.txt");
-  frameRate(fps);
+  //frameRate(fps);
   
   img = createImage(sW,sH,RGB);
   img.loadPixels();
+  
+  pts = new PVector[int(img.pixels.length/scanInterval)];
+  strings = new String[pts.length];
+  
   shp = createShape();
   shp.beginShape(POINTS);
   shp.stroke(255, 63);
   shp.strokeWeight(4);
-  for (int i=0; i<int(img.pixels.length/scanInterval); i++) {
+  for (int i=0; i<pts.length; i++) {
     shp.vertex(0,0,0);
   }
   shp.endShape();
@@ -71,7 +79,15 @@ void draw() {
               if (r > 255) r=255;
               if (r < 0) r=0;
               img.pixels[loc] = color(r);
-              shp.setVertex(shapeCounter, new PVector(x, y, getDistance(r) * -500.0));
+              float z = getDistance(r);
+              
+              PVector pt = new PVector(0,0,0);
+              try {
+                pt = new PVector((float)x/img.width, (float)y/img.height, z);
+              } catch (Exception e) { }
+              pts[shapeCounter] = pt;
+              strings[shapeCounter] = pt.x + " " + pt.y + " " + pt.z;
+              shp.setVertex(shapeCounter, new PVector(x, y, z * -500.0));
             }
             
             shapeCounter++;
@@ -90,6 +106,8 @@ void draw() {
       image(frame, 0, 0);
     }
   }
+  
+  surface.setTitle("" + frameRate);
 }
 
 float maxDistance = -1.0;
