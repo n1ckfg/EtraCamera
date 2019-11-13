@@ -25,7 +25,7 @@ void setupSound() {
 void updateSound() {
   float time = sin((float)millis() / 100.0);
   time = map(time, -1.0, 1.0, 0.6, 0.8);
-  println(time);
+  //println(time);
   for (int i=0; i<sines.length; i++) {
     sines[i].amp(time);
   }

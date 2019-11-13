@@ -4,12 +4,14 @@ void keyPressed() {
       sines[i].play();
     }
     doCapture = true;
+    showCam = false;
   }
   
   if(keyCode==34 || key=='s' || key=='S') {
     saveFrame("data/shot1_frame"+counter+".tga");
     counter++;
     img = createImage(sW, sH, RGB);
+    showCam = true;
   }
   
   if (keyCode==TAB) {
@@ -35,12 +37,14 @@ void keyReleased() {
     }
 }
 
+/*
 void mousePressed() {
   for (int i=0; i<sines.length; i++) {
     sines[i].play();
   }
   
   doCapture = true;
+  showCam = false;
 }
 
 void mouseReleased() {
@@ -50,3 +54,4 @@ void mouseReleased() {
   
   doCapture = false;
 }
+*/
