@@ -67,3 +67,23 @@ void draw() {
   //set(0, 0, cap);
   //println(frameRate);
 }
+
+float maxDistance = -1.0;
+
+void getMaxDistance() {
+  for (int i=1; i<256; i++) {
+    maxDistance += 1.0/i;
+  }
+}
+
+float getDistance(float val) {
+  if (maxDistance < 0) getMaxDistance();
+  
+  float returns = 0.0;
+
+  for (int i=1; i<val+1; i++) {
+    returns += 1.0/i;
+  }
+  
+  return abs(maxDistance - returns) + 1.0;
+}
