@@ -16,12 +16,10 @@ int fps = 30;
 PImage img;
 PShape shp;
 PVector[] pts;
-String[] strings;
+ArrayList<String> stringList;
 
-int scanInterval = 2;
+int scanInterval = 5;
 int counter=1;
-float avgBright = 0;
-float pAvgBright = 0;
 
 boolean doCapture = false;
 boolean firstRun = true;
@@ -40,7 +38,6 @@ void setup() {
   img.loadPixels();
   
   pts = new PVector[int(img.pixels.length/scanInterval)];
-  strings = new String[pts.length];
   
   shp = createShape();
   shp.beginShape(POINTS);
@@ -73,6 +70,7 @@ void draw() {
           for (int x=0; x<img.width; x+=scanInterval) {
             int loc = x + y * img.width;
             float r = red(frame.pixels[loc]);
+            
             if (r >= rThreshold) {
               r*=rScale;
               r += red(img.pixels[loc]);
@@ -82,14 +80,10 @@ void draw() {
               float z = getDistance(r);
               
               PVector pt = new PVector(0,0,0);
-              try {
-                pt = new PVector((float)x/img.width, (float)y/img.height, z);
-              } catch (Exception e) { }
+              pt = new PVector((float)x/img.width, (float)y/img.height, z);
               pts[shapeCounter] = pt;
-              strings[shapeCounter] = pt.x + " " + pt.y + " " + pt.z;
-              shp.setVertex(shapeCounter, new PVector(x, y, z * -500.0));
+              shp.setVertex(shapeCounter, new PVector(x, y, z * -200.0));
             }
-            
             shapeCounter++;
           }
         }
