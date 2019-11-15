@@ -18,7 +18,7 @@ PShape shp;
 PVector[] pts;
 ArrayList<String> stringList;
 
-int scanInterval = 5;
+int scanInterval = 2;
 int counter=1;
 
 boolean doCapture = false;
@@ -27,12 +27,13 @@ boolean firstRun = true;
 Settings settings;
 
 void setup() {
-  size(1280, 720, P3D);
-
+  size(50, 50, P3D);
+  surface.setSize(sW, sH);
+  frameRate(fps);
+  
   cam = new PeasyCam(this, width/2, height/2, 400, 50);
 
-  settings = new Settings("settings.txt");
-  //frameRate(fps);
+  //settings = new Settings("settings.txt");
   
   img = createImage(sW,sH,RGB);
   img.loadPixels();
