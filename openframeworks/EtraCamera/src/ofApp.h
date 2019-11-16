@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Cap.h"
 
 class ofApp : public ofBaseApp {
 
@@ -38,7 +37,5 @@ class ofApp : public ofBaseApp {
         float phase;
         float phaseAdder;
         float phaseAdderTarget;
-    
-        Cap cap;
-		
+    		
 };

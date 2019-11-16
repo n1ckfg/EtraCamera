@@ -4,8 +4,6 @@
 void ofApp::setup() {
     ofBackground(34, 34, 34);
     
-    cap = Cap(1280, 720, 30, 0);
-
     int bufferSize = 512;
     sampleRate = 44100;
     phase = 0;
@@ -67,7 +65,7 @@ void ofApp::setup() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-    cap.update();
+
 }
 
 //--------------------------------------------------------------
