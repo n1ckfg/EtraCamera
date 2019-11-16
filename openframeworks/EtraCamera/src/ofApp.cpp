@@ -2,7 +2,6 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-    
     ofBackground(34, 34, 34);
     
     cap = Cap(1280, 720, 30, 0);
@@ -10,10 +9,11 @@ void ofApp::setup() {
     int bufferSize = 512;
     sampleRate = 44100;
     phase = 0;
-    phaseAdder = 0.0f;
-    phaseAdderTarget = 0.0f;
-    volume = 0.1f;
-    pan = 0.5f;
+    phaseAdder = 0.0;
+    volume = 0.5;
+    pan = 0.5;
+    targetFrequency = 590.0;
+    phaseAdderTarget = (targetFrequency / (float) sampleRate) * TWO_PI;
 
     lAudio.assign(bufferSize, 0.0);
     rAudio.assign(bufferSize, 0.0);
