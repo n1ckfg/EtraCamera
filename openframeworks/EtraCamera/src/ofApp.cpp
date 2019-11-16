@@ -8,7 +8,7 @@ void ofApp::setup() {
     sampleRate = 44100;
     phase = 0;
     phaseAdder = 0.0;
-    volume = 0.5;
+    volume = 1.0;
     pan = 0.5;
     targetFrequency = 590.0;
     phaseAdderTarget = (targetFrequency / (float) sampleRate) * TWO_PI;
