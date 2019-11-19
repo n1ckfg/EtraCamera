@@ -87,6 +87,7 @@ class ofApp : public ofBaseApp {
         float pan;
         int sampleRate;
         float volume;
+        float volumeOrig;
     
         vector <float> lAudio;
         vector <float> rAudio;
