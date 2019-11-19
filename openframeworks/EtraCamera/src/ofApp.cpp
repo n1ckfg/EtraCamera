@@ -88,7 +88,7 @@ void ofApp::setup() {
     sampleRate = 44100;
     phase = 0;
     phaseAdder = 0.0;
-    volume = 1.0;
+    volume = 2.0;
     pan = 0.5;
     targetFrequency = 590.0;
     phaseAdderTarget = (targetFrequency / (float) sampleRate) * TWO_PI;
@@ -137,6 +137,7 @@ void ofApp::setup() {
     settings.numInputChannels = 0;
     settings.bufferSize = bufferSize;
     soundStream.setup(settings);
+    soundStream.stop();
     
     // on OSX: if you want to use ofSoundPlayer together with ofSoundStream you need to synchronize buffersizes.
     // use ofFmodSetBuffersize(bufferSize) to set the buffersize in fmodx prior to loading a file.
@@ -199,6 +200,7 @@ void ofApp::update() {
         	} else { // trigger is ON
                 markTriggerTime = t;
 	        	trigger = true;
+                soundStream.start();
 	        }  
         // 2. motion is triggered
         } else if (trigger && isMoving) { // keep resetting timer as long as motion is detected
@@ -206,6 +208,7 @@ void ofApp::update() {
         // 3. motion no longer detected
     	} else if (trigger && !isMoving && t > markTriggerTime + timeDelay) {
             trigger = false;
+            soundStream.stop();
         }
 
         sendOsc();
@@ -215,6 +218,7 @@ void ofApp::update() {
     if (motionVal > flowResetThreshold) {
         curFlow->resetFlow();
         trigger = false;
+        soundStream.stop();
     }
 }
 
